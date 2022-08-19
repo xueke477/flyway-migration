@@ -31,12 +31,12 @@ runs:
   using: docker
   image: docker://flyway/flyway:9
   env:
-    FLYWAY_URL: ${{ github.event.inputs.url }}
-    FLYWAY_USER: ${{ github.event.inputs.user }}
-    FLYWAY_PASSWORD: ${{ github.event.inputs.password }}
-    FLYWAY_LOCATIONS: ${{ github.event.inputs.locations }}
+    FLYWAY_URL: ${{ inputs.url }}
+    FLYWAY_USER: ${{ inputs.user }}
+    FLYWAY_PASSWORD: ${{ inputs.password }}
+    FLYWAY_LOCATIONS: ${{ inputs.locations }}
   args:
     - migrate
-    - "-defaultSchema=${{ github.event.inputs.defaultSchema }}"
-    - "-schemas=${{ github.event.inputs.schemas }}"
+    - "-defaultSchema=${{ inputs.defaultSchema }}"
+    - "-schemas=${{ inputs.schemas }}"
     
