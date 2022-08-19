@@ -27,9 +27,13 @@ inputs:
     description: Comma-separated list of database schemas.
     type: string
     required: true
+  flyway_version:
+    description: Flyway docker image version
+    type: string
+    default: "9.1.4"
 runs:
   using: docker
-  image: docker://flyway/flyway:9
+  image: docker://flyway/flyway:${{ inputs.flyway_version }}
   env:
     FLYWAY_URL: jdbc:mysql://${{ inputs.endpoint }}:3306
     FLYWAY_USER: ${{ inputs.user }}
