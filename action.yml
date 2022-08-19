@@ -7,6 +7,10 @@ inputs:
     description: Endpoint URL to the MySQL database instance.
     type: string
     required: true
+  port:
+    description: Port number of the MySQL database instance.
+    type: string
+    default: "3306"
   user:
     description: MySQL database user, default to root.
     type: string
@@ -31,7 +35,7 @@ runs:
   using: docker
   image: docker://flyway/flyway:7.15
   env:
-    FLYWAY_URL: jdbc:mysql://${{ inputs.endpoint }}:3306
+    FLYWAY_URL: jdbc:mysql://${{ inputs.endpoint }}:${{ inputs.port }}
     FLYWAY_USER: ${{ inputs.user }}
     FLYWAY_PASSWORD: ${{ inputs.password }}
     FLYWAY_LOCATIONS: ${{ inputs.locations }}
