@@ -36,5 +36,7 @@ runs:
     FLYWAY_PASSWORD: ${{ inputs.password }}
     FLYWAY_LOCATIONS: ${{ inputs.locations }}
   args:
-    - migrate -defaultSchema=${{ inputs.defaultSchema }} -schemas=${{ inputs.schemas }}
+    - migrate
+    - "-defaultSchema=${{ inputs.defaultSchema }}"
+    - "-schemas=${{ inputs.schemas }}"
     
