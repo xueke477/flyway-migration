@@ -1,0 +1,43 @@
+name: 'Migrate MySQL database with Flyway'
+branding:
+  color: red
+  icon: database
+inputs:
+  url:
+    description: Endpoint URL to the MySQL database instance.
+    type: string
+    required: true
+  user:
+    description: MySQL database user, default to root.
+    type: string
+    default: 'root'
+  password:
+    description: Password of the user.
+    type: string
+    required: true
+  locations:
+    description: The -locations CLI option passed to Flyway.
+    type: string
+    required: true
+  defaultSchema:
+    description: The default schema.
+    type: string
+    required: true
+  schemas:
+    description: Comma-separated list of database schemas.
+    type: string
+    required: true
+runs:
+  using: docker
+  image: docker://flyway/flyway:9
+  env:
+    FLYWAY_URL: ${{ github.event.inputs.url }}
+    FLYWAY_USER: ${{ github.event.inputs.user }}
+    FLYWAY_PASSWORD: ${{ github.event.inputs.password }}
+    FLYWAY_LOCATIONS: ${{ github.event.inputs.locations }}
+    FLYWAY_INIT_SQL: ${{ github.event.inputs.initSql }}
+  args:
+    - migrate
+    - "-defaultSchema=${{ github.event.inputs.defaultSchema }}"
+    - "-schemas=${{ github.event.inputs.schemas }}"
+    
