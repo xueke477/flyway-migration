@@ -35,7 +35,6 @@ runs:
     FLYWAY_USER: ${{ github.event.inputs.user }}
     FLYWAY_PASSWORD: ${{ github.event.inputs.password }}
     FLYWAY_LOCATIONS: ${{ github.event.inputs.locations }}
-    FLYWAY_INIT_SQL: ${{ github.event.inputs.initSql }}
   args:
     - migrate
     - "-defaultSchema=${{ github.event.inputs.defaultSchema }}"
